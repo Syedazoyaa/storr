@@ -5,10 +5,10 @@ from dotenv import load_dotenv
 import os
 
 # Load environment variables
-load_dotenv()
+
 
 # Configure Gemini API key
-genai.configure(api_key=os.getenv("AIzaSyDl2nIaYT9ef8vJ6NDhXnIOUj-Z_UmYfXU"))
+genai.configure(api_key="AIzaSyDl2nIaYT9ef8vJ6NDhXnIOUj-Z_UmYfXU")
 
 # Function to interact with Gemini for story generation
 def generate_story(genre, theme, writing_style, prompt, additional_prompt):
