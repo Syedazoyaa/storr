@@ -1,3 +1,4 @@
 streamlit
 google.generativeai
 base64
+python-dotenv
