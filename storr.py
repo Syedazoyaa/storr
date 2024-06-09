@@ -1,9 +1,14 @@
 import streamlit as st
 import base64
 import google.generativeai as genai
+from dotenv import load_dotenv
+import os
+
+# Load environment variables
+load_dotenv()
 
 # Configure Gemini API key
-genai.configure(api_key="AIzaSyDl2nIaYT9ef8vJ6NDhXnIOUj-Z_UmYfXU")
+genai.configure(api_key=os.getenv("AIzaSyDl2nIaYT9ef8vJ6NDhXnIOUj-Z_UmYfXU"))
 
 # Function to interact with Gemini for story generation
 def generate_story(genre, theme, writing_style, prompt, additional_prompt):
@@ -37,6 +42,28 @@ def post_process_story(story):
     if not story.endswith((".", "!", "?")):
         story += "."
     return story
+
+# Function to set background image using base64 encoding
+def set_background_image(image_path):
+    try:
+        with open(image_path, "rb") as image_file:
+            encoded_image = base64.b64encode(image_file.read()).decode()
+        page_bg_img = f'''
+        <style>
+        .stApp {{
+            background-image: url("data:image/png;base64,{encoded_image}");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }}
+        </style>
+        '''
+        st.markdown(page_bg_img, unsafe_allow_html=True)
+    except FileNotFoundError:
+        st.error(f"Background image not found at: {image_path}")
+
+# Set background image
+set_background_image("storrrbg.png")
 
 # Streamlit app
 def main():
