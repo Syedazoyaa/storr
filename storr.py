@@ -3,7 +3,7 @@ import base64
 import google.generativeai as genai
 
 # Configure Gemini API key
-genai.configure(api_key="myapikey")
+genai.configure(api_key="AIzaSyDl2nIaYT9ef8vJ6NDhXnIOUj-Z_UmYfXU")
 
 # Function to interact with Gemini for story generation
 def generate_story(genre, theme, writing_style, prompt, additional_prompt):
